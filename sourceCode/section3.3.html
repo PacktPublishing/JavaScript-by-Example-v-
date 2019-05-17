@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<script>
+			function init() {
+				//mimick as the response from server
+				var questions = '[{"question":"What is something?","options":["change 2","answer2"],"answer":"answer1"},{"question":"What is something2?","options":["answer1","answer2"],"answer":"answer2"}]'
+
+				var dataModel = JSON.parse(questions);
+
+				for(i =0; i<dataModel.length;i++) {
+
+					var article = document.createElement('article');
+					article.innerHTML = "<p>" + dataModel[i].question + "</p>";
+
+					for(j=0;j<dataModel[i].options.length;j++){
+						var radio = document.createElement('input');
+						radio.setAttribute("type","radio");
+						radio.setAttribute("id","options" + i + "" + j);
+						radio.setAttribute("value",j);
+						radio.setAttribute("name","option" + i);
+
+						radio.onclick = function() {
+							alert(this.value)
+						}
+
+						/*
+							$("#id").click(function(){
+								
+							})
+						*/
+
+						var label = document.createElement("label");
+						label.setAttribute("for","options" + i + "" + j);
+						label.innerHTML = dataModel[i].options[j];
+
+						var breakTag = document.createElement("br");
+
+						article.append(radio);
+						article.append(label);
+						article.append(breakTag);
+					}
+
+
+					document.getElementById("questions").append(article);
+				}
+			}
+
+			window.onload = init;
+		</script>
+	</head>	
+	<body>
+		<center>
+			<header>
+				Quiz Application
+			</header>
+			<hr/>
+			<section id="questions">
+			</section>
+		</center>
+	</body>
+</html>

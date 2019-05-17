@@ -1,0 +1,27 @@
+<html>
+	<body>
+		<center>
+			<header>
+				Quiz Application
+			</header>
+			<hr/>
+			<section id="questions">
+			</section>
+		</center>
+	</body>
+	<script>
+		//mimick as the response from server
+		var questions = '[{"question":"What is something?","options":["answer1","answer2"],"answer":"answer1"},{"question":"What is something2?","options":["answer1","answer2"],"answer":"answer2"}]'
+
+		var dataModel = JSON.parse(questions);
+
+		for(i =0; i<dataModel.length;i++) {
+
+			var article = document.createElement('article');
+			article.innerHTML = "<p>" + dataModel[i].question + "</p>";
+
+
+			document.getElementById("questions").append(article);
+		}
+	</script>
+</html>

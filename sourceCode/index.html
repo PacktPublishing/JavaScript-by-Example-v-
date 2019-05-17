@@ -1,0 +1,57 @@
+<html>
+	<head>
+	</head>	
+	<body>
+		<center>
+			<header>
+				Quiz Application
+			</header>
+			<hr />
+			<section id="questions">
+			</section>
+		</center>
+	</body>
+	<script>
+		//mimick it like a server resposne
+		var questions = '[{"question":"What is something?","options":["answer1","answer2"],"answer":"answer1"},{"question":"What is something2?","options":["answer1","answer2"],"answer":"answer2"}]';
+
+		var dataModel = JSON.parse(questions);
+
+		for(i=0;i<dataModel.length;i++){
+			var article = document.createElement('article');
+			article.innerHTML = "<p>" + dataModel[i].question + "</p>" ;
+
+			for(j=0;j<dataModel[i].options.length;j++){
+				var radio = document.createElement('input');
+				radio.setAttribute("type","radio");
+				radio.setAttribute("id","options" + i + "" + j);
+				radio.setAttribute("value",j);
+				radio.setAttribute("name","option" + i);
+
+
+				var label = document.createElement("label");
+				label.setAttribute("for","options" + i + "" + j);
+				label.innerHTML = dataModel[i].options[j];
+
+				var breakTag = document.createElement("br");
+
+				article.append(radio);
+				article.append(label);
+				article.append(breakTag);
+			}
+
+			document.getElementById("questions").append(article);
+		}
+
+		/*
+		for(i=0;i<dataModel.length;i++){
+			console.log(dataModel[i].question)
+
+			var div = document.createElement('div');
+			div.innerHTML = dataModel[i].question;
+
+			document.getElementById("questions").append(div)
+		}
+		*/
+	</script>
+</html>
